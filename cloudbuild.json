@@ -2,17 +2,18 @@
     "steps": [
       {
         "name": "gcr.io/cloud-builders/docker",
-        "args": ["build", "-t", "gcr.io/$PROJECT_ID/time-display-app", "."]
+        "args": ["build", "-t", "gcr.io/$PROJECT_ID/clock-app", "."]
       },
       {
         "name": "gcr.io/cloud-builders/docker",
-        "args": ["push", "gcr.io/$PROJECT_ID/time-display-app"]
+        "args": ["push", "gcr.io/$PROJECT_ID/clock-app"]
       },
       {
         "name": "gcr.io/google.com/cloudsdktool/cloud-sdk",
+        "entrypoint": "gcloud",  
         "args": [
-          "run", "deploy", "time-display-app",
-          "--image=gcr.io/$PROJECT_ID/time-display-app",
+          "run", "deploy", "live-clock",
+          "--image=gcr.io/$PROJECT_ID/clock-app",
           "--region=us-central1",
           "--platform=managed",
           "--allow-unauthenticated",
@@ -20,8 +21,9 @@
         ]
       }
     ],
-    "timeout": "1100s",
+    "timeout": "800s",
     "options": {
-      "logging": "CLOUD_LOGGING_ONLY"
+      "logging": "CLOUD_LOGGING_ONLY",
+      "machineType": "E2_HIGHCPU_8"
     }
   }
