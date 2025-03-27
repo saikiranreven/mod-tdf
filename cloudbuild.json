@@ -2,26 +2,28 @@
     "steps": [
       {
         "name": "gcr.io/cloud-builders/docker",
-        "args": ["build", "-t", "gcr.io/$PROJECT_ID/clock-app", "."]
+        "args": ["build", "-t", "gcr.io/$PROJECT_ID/live-clock", "."]
       },
       {
         "name": "gcr.io/cloud-builders/docker",
-        "args": ["push", "gcr.io/$PROJECT_ID/clock-app"]
+        "args": ["push", "gcr.io/$PROJECT_ID/live-clock"]
       },
       {
         "name": "gcr.io/google.com/cloudsdktool/cloud-sdk",
-        "entrypoint": "gcloud",  
+        "entrypoint": "gcloud",
         "args": [
           "run", "deploy", "live-clock",
-          "--image=gcr.io/$PROJECT_ID/clock-app",
+          "--image=gcr.io/$PROJECT_ID/live-clock",
           "--region=us-central1",
           "--platform=managed",
           "--allow-unauthenticated",
-          "--port=8080"
+          "--port=8080",
+          "--timeout=300", 
+          "--set-env-vars=PORT=8080" 
         ]
       }
     ],
-    "timeout": "800s",
+    "timeout": "600s",
     "options": {
       "logging": "CLOUD_LOGGING_ONLY",
       "machineType": "E2_HIGHCPU_8"
