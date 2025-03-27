@@ -2,11 +2,11 @@ from flask import Flask, render_template
 from datetime import datetime
 import os
 
-app = Flask(__name__)  # Automatically looks for 'templates/index.html'
+app = Flask(__name__)
 
 @app.route('/')
 def home():
-    return render_template('index.html',  # ← Exact match
+    return render_template('index.html',
         time=datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
         timezone=os.getenv('TZ', 'UTC')
     )
