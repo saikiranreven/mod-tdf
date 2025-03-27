@@ -7,10 +7,13 @@ app = Flask(__name__)
 
 @app.route('/')
 def show_time():
-    toronto_tz = pytz.timezone('America/Toronto')
-    toronto_time = datetime.now(toronto_tz)
+    ist = pytz.timezone('Asia/Kolkata')
+    ist_time = datetime.now(ist)
+    
+    #toronto_tz = pytz.timezone('America/Toronto')
+    #toronto_time = datetime.now(toronto_tz)
     return render_template('index.html',
-        current_time=toronto_time.strftime("%H:%M:%S")
+        current_time=ist_time.strftime("%H:%M:%S")
     )
 
 if __name__ == '__main__':
