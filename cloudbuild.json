@@ -18,8 +18,7 @@
           "--platform=managed",
           "--allow-unauthenticated",
           "--port=8080",
-          "--timeout=300",
-          "--set-env-vars=GUNICORN_PORT=8080" 
+          "--set-env-vars=TZ=UTC"
         ]
       }
     ],
