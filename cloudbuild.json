@@ -10,6 +10,7 @@
           },
           {
             "name": "gcr.io/google.com/cloudsdktool/cloud-sdk",
+            "entrypoint": "gcloud",
             "args": [
               "run", "deploy", "live-clock",
               "--image=gcr.io/${PROJECT_ID}/clock-app",
