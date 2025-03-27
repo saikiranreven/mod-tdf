@@ -7,7 +7,8 @@ app = Flask(__name__)
 
 @app.route('/')
 def show_time():
-    toronto_time = datetime.now(pytz.timezone('America/Toronto'))
+    toronto_tz = pytz.timezone('America/Toronto')
+    toronto_time = datetime.now(toronto_tz)
     return render_template('index.html',
         current_time=toronto_time.strftime("%H:%M:%S")
     )
