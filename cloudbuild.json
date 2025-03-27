@@ -1,25 +1,24 @@
 {
     "steps": [
-      {
-        "name": "gcr.io/cloud-builders/docker",
-        "args": ["build", "-t", "gcr.io/$PROJECT_ID/clock-app", "."]
-      },
-      {
-        "name": "gcr.io/cloud-builders/docker",
-        "args": ["push", "gcr.io/$PROJECT_ID/clock-app"]
-      },
-      {
-        "name": "gcr.io/google.com/cloudsdktool/cloud-sdk",
-        "entrypoint": "gcloud",
-        "args": [
-          "run", "deploy", "live-clock",
-          "--image=gcr.io/$PROJECT_ID/clock-app",
-          "--region=us-central1",
-          "--platform=managed",
-          "--allow-unauthenticated",
-          "--port=8080",
-          "--set-env-vars=TZ=UTC"
-        ]
+        {
+            "name": "gcr.io/cloud-builders/docker",
+            "args": ["build", "-t", "gcr.io/${PROJECT_ID}/clock-app", "."]
+          },
+          {
+            "name": "gcr.io/cloud-builders/docker",
+            "args": ["push", "gcr.io/${PROJECT_ID}/clock-app"]
+          },
+          {
+            "name": "gcr.io/google.com/cloudsdktool/cloud-sdk",
+            "args": [
+              "run", "deploy", "live-clock",
+              "--image=gcr.io/${PROJECT_ID}/clock-app",
+              "--region=us-central1",
+              "--platform=managed",
+              "--allow-unauthenticated",
+              "--port=5000",  
+              "--timeout=300"
+            ]
       }
     ],
     "timeout": "600s",

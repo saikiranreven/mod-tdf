@@ -1,31 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Cloud Run Clock</title>
-    <meta charset="UTF-8">
+    <title>Current Time</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             text-align: center;
-            margin-top: 50px;
+            margin-top: 100px;
         }
         .time {
-            font-size: 3em;
+            font-size: 5rem;
+            color: #333;
         }
     </style>
 </head>
 <body>
-    <h1>Current Server Time</h1>
-    <div class="time">{{ time }}</div>
-    <p>Timezone: {{ timezone }}</p>
-    
-    <script>
-        // Auto-update time every second
-        setInterval(() => {
-            const now = new Date();
-            document.querySelector('.time').textContent = 
-                now.toLocaleString();
-        }, 1000);
-    </script>
+    <div class="time">{{ current_time }}</div>
 </body>
 </html>
