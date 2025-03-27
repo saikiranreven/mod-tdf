@@ -1,13 +1,15 @@
 from flask import Flask, render_template
 from datetime import datetime
 import os
+import pytz
 
 app = Flask(__name__)
 
 @app.route('/')
 def show_time():
+    toronto_time = datetime.now(pytz.timezone('America/Toronto'))
     return render_template('index.html',
-        current_time=datetime.now().strftime("%H:%M:%S")
+        current_time=toronto_time.strftime("%H:%M:%S")
     )
 
 if __name__ == '__main__':
